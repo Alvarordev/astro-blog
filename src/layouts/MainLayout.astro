@@ -1,0 +1,22 @@
+--- 
+import MainHead from './MainHead.astro'
+import Footer from '../components/footer.astro'
+import Nav from '../components/nav.astro'
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title = 'My astro blog', description = 'My musings about my astro blog' } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<MainHead title={title} description={description}/>
+	<body class="h-screen flex flex-col">
+		<Nav/>
+		<slot />
+		<Footer/>
+	</body>
+</html>

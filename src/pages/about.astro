@@ -1,0 +1,12 @@
+---
+import { Image } from '@astrojs/image/components';
+import Container from "../components/Container.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="about" description="about description">
+  <Container>
+    <h1>About</h1>
+    <Image src='/images/fullham-vs-brentford.jpg' alt="descriptive text" width={399} height={399} class="object-cover"/>
+  </Container>
+</MainLayout>

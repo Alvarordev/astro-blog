@@ -1,0 +1,49 @@
+---
+const navData = [
+  {
+    name: "Pronosticos",
+    path: "/pronosticos/premier-league",
+  },
+  {
+    name: "Previas",
+    path: "/previas",
+  },
+  {
+    name: "About",
+    path: "/about",
+  },
+];
+
+const { pathname } = Astro.url;
+---
+
+<nav class="h-14 flex justify-center items-center p-4 bg-black text-white">
+  <div class="flex justify-between items-center max-w-6xl mx-auto w-full">
+    <a class="font-bold text-xl" href="/">THE PREMIER HUB</a>
+
+    <ul class="flex gap-3">
+      {
+        navData.map((item) => (
+          <li>
+            <a
+              class={pathname === item.path && "text-blue-500"}
+              href={item.path}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const navLinks = document.querySelectorAll("#navLinks");
+
+  navLinks.forEach((link) => {
+    if (link.getAttribute("href") === window.location.pathname) {
+      link.setAttribute("class", "text-blue-500");
+    }
+  });
+</script>
