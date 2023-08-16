@@ -1,0 +1,36 @@
+---
+import { Image } from "@astrojs/image/components";
+import formatDate from "../utils/date-formatter";
+
+const {slug, title, desc, date, url} = Astro.props;
+---
+
+
+<div class="col-span-2 row-span-2">
+    <div class="grid grid-rows-[repeat(3,max-content)] gap-2">
+      <a href={slug}>
+        <Image
+          src={url}
+          transition:name={slug}
+          class="object-cover"
+          alt=""
+          width={566}
+          height={377}
+        />
+      </a>
+      <a href={slug}>
+        <h3
+          class="text-[1.75rem] font-bold"
+          transition:name={`title-${slug}`}
+        >
+          {title} cuotas, pronosticos y noticias
+        </h3>
+      </a>
+      <div>
+        <p>
+          {desc}
+        </p>
+        <p class="text-sm">{formatDate(date)}</p>
+      </div>
+    </div>
+  </div>

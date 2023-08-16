@@ -1,75 +1,36 @@
 ---
 import Container from "../components/Container.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+import Posts from "../components/Posts.astro";
 import Layout from "../layouts/MainLayout.astro";
 import posts from "../matches.js";
-import formatDate from "../utils/date-formatter.js";
-import { Image } from '@astrojs/image/components';
 ---
 
 <Layout title="home" description="my astro blog description">
-    <Container>
-      <section>
-        <div
-          class="grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-[repeat(2, max-content)] gap-5"
-        >
-          <div class="col-span-2 row-span-2">
-            <div class="grid grid-rows-[repeat(3,max-content)] gap-2">
-              <a href={posts[0].slug}>
-                <Image
-                  src={posts[0].url}
-                  transition:name={posts[0].slug}
-                  class="object-cover"
-                  alt=""
-                  width={566}
-                  height={377}
-                />
-              </a>
-              <a href={posts[0].slug}>
-                <h3
-                  class="text-[1.75rem] font-bold"
-                  transition:name={`title-${posts[0].slug}`}
-                >
-                  {posts[0].title} odds, predictions and picks
-                </h3>
-              </a>
-              <div>
-                <p>
-                  {posts[0].description}
-                </p>
-                <p class="text-sm">{formatDate(posts[0].date)}</p>
-              </div>
-            </div>
-          </div>
-          {
-            posts
-              .filter((post, index) => index !== 0)
-              .map((post) => (
-                <div class="col-span-1 row-span-1">
-                  <div class="grid grid-rows-[repeat(3,max-content)] gap-2">
-                    <a href={post.slug}>
-                      <Image
-                        src={post.url}
-                        transition:name={post.slug}
-                        class="object-cover"
-                        alt=""
-                        width={277}
-                        height={181}
-                      />
-                    </a>
-                    <a href={post.slug}>
-                      <h3 class="font-bold text-lg" transition:name={`title-${post.slug}`}>
-                        {post.title} odds, predictions and picks
-                      </h3>
-                    </a>
-                    <p class="text-sm">{formatDate(post.date)}</p>
-                  </div>
-                </div>
-              ))
-          }
-        </div>
-      </section>
+  <Container>
+    <section>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-[repeat(2, max-content)] gap-5"
+      >
+        <FeaturedPost
+          slug={posts[0].slug}
+          title={posts[0].title}
+          desc={posts[0].description}
+          date={posts[0].date}
+          url={posts[0].url}
+        />
+        {posts.filter((post, index) => index !== 0)
+            .map((post) => (
+              <Posts
+                slug={post.slug}
+                title={post.title}
+                date={post.date}
+                url={post.url}
+              />
+            ))}
+      </div>
+    </section>
 
-      <section>
-      </section>
-    </Container>
+    <section></section>
+  </Container>
 </Layout>
