@@ -5,23 +5,27 @@ import { Image } from "@astrojs/image/components";
 const {slug, title, date, url} = Astro.props;
 ---
 
-<div class="col-span-1 row-span-1">
-    <div class="grid grid-rows-[repeat(3,max-content)] gap-2">
-      <a href={slug}>
+<div class="md:col-span-1 md:row-span-1 py-2 md:py-0">
+    <div class="grid grid-cols-4 md:grid-cols-1 md:grid-rows-[repeat(3,max-content) gap-2">
+      <a href={slug} class="col-span-2" >
         <Image
           src={url}
           transition:name={slug}
-          class="object-cover"
+          fit={'cover'}
+          position={'center'}
           alt=""
           width={277}
           height={181}
         />
       </a>
-      <a href={slug}>
-        <h3 class="font-bold text-lg" transition:name={`title-${slug}`}>
-          {title} pronosticos, cuotas y noticias
-        </h3>
-      </a>
-      <p class="text-sm">{formatDate(date)}</p>
+      <div class="col-span-2">
+        <a href={slug}>
+            <h3 class="font-bold text-lg" transition:name={`title-${slug}`}>
+              {title} pronosticos, cuotas y noticias
+            </h3>
+          </a>
+          <p class="text-sm">{formatDate(date)}</p>
+      </div>
+      
     </div>
   </div>
