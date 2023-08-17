@@ -23,11 +23,11 @@ const {slug, title, desc, date, url} = Astro.props;
           class="text-[1.75rem] font-bold"
           transition:name={`title-${slug}`}
         >
-          {title} cuotas, pronosticos y noticias
+          {title} pronosticos, cuotas y noticias
         </h3>
       </a>
       <div>
-        <p>
+        <p class="max-h-[70px] overflow-hidden">
           {desc}
         </p>
         <p class="text-sm">{formatDate(date)}</p>
